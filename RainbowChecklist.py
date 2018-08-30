@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 checklist = list()
 
 #Takes an item + adds to end of list
@@ -16,11 +18,49 @@ def update(index, item):
 def destroy(index):
     checklist.pop(index)
 
+#Prints all items in the list
 def list_all_items():
     index = 0
     for list_item in checklist:
         print("{} {}".format(index, list_item))
         index += 1
+
+
+# marks an item as completed
+def mark_completed(index):
+    checklist[index] = "√ " + checklist[index]
+
+def select(function_code):
+    # Create item
+    print('step 1')
+    if function_code == "C":
+        print('step 2')
+        input_item = user_input("Input item: ")
+        print('TYPE: {}'.format(type(input_item)))
+        create(input_item)
+
+    # Read item
+    elif function_code == "R":
+        print('step 3')
+        item_index = user_input("Index Number: ")
+
+        # Remember that item_index must actually exist or our program will crash.
+        read(item_index)
+
+    # Print all items
+    elif function_code == "P":
+        list_all_items()
+
+    # Catch all
+    else:
+        print('step 4')
+        print("Unknown Option")
+
+def user_input(prompt):
+    # the input function will display a message in the terminal
+    # and wait for user input.
+    user_input = input(prompt)
+    return user_input
 
 def test():
     create("purple sox")
@@ -35,6 +75,17 @@ def test():
     print(read(0))
 
     list_all_items()
+
+       # Call your new function with the appropriate value
+    select("C")
+    # View the results
+    # list_all_items()
+    # Call function with new value
+    #select(user_input("Please Enter a value:")
+
+    # View results
+    # list_all_items()
+    # Continue until all code is run
 
 
 test()
