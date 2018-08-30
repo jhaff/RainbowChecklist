@@ -8,11 +8,11 @@ def create(item):
 
 #Read function, takes an index + returns the item at specified index
 def read(index):
-    return checklist[index]
+    Print(checklist[int(index)])
 
 #Update function changes item at specified index
 def update(index, item):
-    checklist[index] = item
+    checklist[int(index)] = item
 
 #Destroy function, deletes item at specified index
 def destroy(index):
@@ -32,35 +32,46 @@ def mark_completed(index):
 
 def select(function_code):
     # Create item
-    print('step 1')
     if function_code == "C":
-        print('step 2')
         input_item = user_input("Input item: ")
-        print('TYPE: {}'.format(type(input_item)))
+        #print('TYPE: {}'.format(type(input_item)))
         create(input_item)
 
     # Read item
     elif function_code == "R":
-        print('step 3')
         item_index = user_input("Index Number: ")
 
         # Remember that item_index must actually exist or our program will crash.
         read(item_index)
 
+    elif function_code == "U":
+        #asks user for an index number to update and a new string to update it with
+        item_index = user_input("Index Number: ")
+        updated_item = user_input("Updated Item: ")
+
+        update(item_index, updated_item)
+
+
     # Print all items
     elif function_code == "P":
         list_all_items()
+
+    elif function_code == "Q":
+        # This is where we want to stop our loop
+        return False
 
     # Catch all
     else:
         print('step 4')
         print("Unknown Option")
 
+    return True
+
 def user_input(prompt):
     # the input function will display a message in the terminal
     # and wait for user input.
     user_input = input(prompt)
-    return user_input
+    return user_input.upper()
 
 def test():
     create("purple sox")
@@ -87,5 +98,13 @@ def test():
     # list_all_items()
     # Continue until all code is run
 
+running = True
+while running:
+    selection = user_input(
+        "Press C to add to list, R to Read from list and P to display list, U to update or Q to quit: ")
+    running = select(selection)
 
-test()
+
+
+
+#test()
