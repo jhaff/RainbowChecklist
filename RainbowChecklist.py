@@ -19,7 +19,7 @@ def destroy(index):
 def list_all_items():
     index = 0
     for list_item in checklist:
-        print(index + list_item)
+        print("{} {}".format(index, list_item))
         index += 1
 
 def test():
@@ -33,5 +33,8 @@ def test():
     destroy(1)
 
     print(read(0))
+
+    list_all_items()
+
 
 test()
